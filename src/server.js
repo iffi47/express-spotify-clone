@@ -2,10 +2,15 @@ require('dotenv').config();
 
 const express = require("express");
 const mongoose = require("mongoose");
+const userRouter = require("./routes/userRoutes");
 const PORT = process.env.PORT || 5000;
 
 //Initailize app
 const app = express();
+//Middleware
+app.use(express.json());
+//Routes
+app.use("/api/users", userRouter);
 
 //Connect to database
 //Listening server
