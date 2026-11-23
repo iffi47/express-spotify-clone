@@ -11,6 +11,8 @@
   "dependencies": {
     "dotenv": "^18.0.10",
     "express": "^5.3.0",
+    "express-async-handler": "^1.2.0",
+    "http-status-codes": "^2.3.0",
     "mongoose": "^9.12.2"
   }
 }
