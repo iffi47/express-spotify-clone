@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const { StatusCodes } = require("http-status-codes");
 const User = require("../models/User");
+const generateToken = require("../utils/generateToken");
 
 //@desc - Register new user
 //@route - POST /api/user/register
@@ -44,12 +45,12 @@ const loginUser = asyncHandler(async (req, res) =>{
   //check if users exists and password matches
   if(user && (await user.matchPassword(password))){
     res.status(StatusCodes.OK).json({
-      _id: user._id,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      profilePicture: user.profilePicture,
-      token: "token"
-    })
+     _id: user._id,
+     email: user.email,
+     isAdmin: user.isAdmin,
+     profilePicture: user.profilePicture,
+     token: generateToken(user._id),
+    });
   }else{
     res.status(StatusCodes.UNAUTHORIZED);
     throw new Error("Invalid email and password!")
