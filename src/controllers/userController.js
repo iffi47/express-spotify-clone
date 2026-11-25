@@ -88,7 +88,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
    const result = await uploadToCloudinary(req.file.path, "spotify/users");
    user.profilePicture = result.secure_url;
   }
-  const updatedUser = await user();
+  const updatedUser = await user.save();
   res.status(StatusCodes.OK).json({
    _id: updatedUser._id,
    name: updatedUser.name,
